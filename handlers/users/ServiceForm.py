@@ -25,10 +25,10 @@ TEXT = {
     'start': ("Assalomu alaykum, Xizmatlar bo‘yicha reklama bo‘limiga xush kelibsiz!!!\n"\
               "Iltimos arizangiz qabul qilinishi uchun barcha talablarni to‘g‘ri bajaring...\n"\
                 "Formani bekor qilish uchun /cancel buyrug'ini bering...\n\n\n"\
-                "Xizmatlaringizni turini yozing: Masalan: O'quv markazi, Kompyuter xizmatlari..."),
+                "Xizmatlaringizni turini yozing: \n(Masalan: O'quv markazi, Kompyuter xizmatlari...)"),
     'description': "Xizmatlaringiz haqida to'liqroq izoh yozing  {1000 ta belgi kiritishingiz mumkin!}:",
-    'regions': "Xizmatlaringizni qaysi hududlarda faoliyat ko'rsatadi: Masalan: Toshkent, Samarqand, Urgut...",
-    'number': "Bog'lanish uchun elefon raqamingizni kiriting: Masalan +998 90 123 45 67",
+    'regions': "Xizmatlaringizni qaysi hududlarda faoliyat ko'rsatadi: \n\n(Masalan: Toshkent, Samarqand, Urgut...)",
+    'number': "Bog'lanish uchun elefon raqamingizni kiriting: \n\n(Masalan +998 90 123 45 67)",
     'photo': "Iltimos xizmatlaringizni ifodalaydigan bir dona suratni yuklang...",
 }
 

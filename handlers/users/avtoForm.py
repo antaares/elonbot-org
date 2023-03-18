@@ -8,7 +8,7 @@ from keyboards.default.mainHomeKeys import CONFIRM
 from keyboards.default.cancel_keys import CANCEL
 from keyboards.default.mainMenu import MAIN_MENU
 from keyboards.inline.mainHomeKeys import ADMIN_CONFIRM
-from keyboards.inline.autoKeys import AUTO_POSITION, CAR_STATE, TRANSMISSION_BOX
+
 
 from loader import dp, bot, db
 from filters import IsPrivate
@@ -24,18 +24,18 @@ TEXT = {
     'start': ("Assalomu alaykum, Avtomobillar bo‘yicha reklama bo‘limiga xush kelibsiz!!!\n"
         "Iltimos arizangiz qabul qilinishi uchun barcha talablarni to‘g‘ri bajaring...\n"
         "Formani bekor qilish uchun /cancel buyrug'ini bering...\n\n\n"
-        "Avtomobile modelini kiriting: Masalan: Toyota Corolla, Malibu, Camry, Captiva va hakazo."),
-    'fuel_type': "Avtomobilning yoqlg'isi qanday? Misol uchun: Benzin, dizel, gaz va hokazo.",
-    'color': "Avtomobil rangini yozing: Masalan: Qora, oq, qizil, ko'k, sariq va hokazo.",
-    'now': "Avtomobilning hozirgi holati haqida qisqacha yozing: Masalan: Yangi, qirilmagan, motor joyida va hokazo.",
+        "Avtomobile modelini kiriting: (Misol uchun: Genta Elegant Plus …….. )"),
+    'fuel_type': "Avtomobilning yoqlg'isi qanday? \n\n(Misol uchun: Benzin, dizel, gaz va hokazo.)",
+    'color': "Avtomobil rangini yozing: Masalan: \n\n(Qora, oq, qizil, ko'k, sariq va hokazo.)",
+    'now': "Avtomobilning hozirgi holati haqida qisqacha yozing: \n\n(Masalan: Yangi, qirilmagan, motor joyida va hokazo.)",
     'box': "Avtomobilning uzatish qutisi qanday?\nTanlang:",
-    'phone': "Telefon raqam kiriting: Masalan: +998 90 123 45 67",
-    'city': "Qaysi shahardansiz? Masalan: Toshkent, Samarqand, Namangan, Andijon va hokazo.",
+    'phone': "Telefon raqam kiriting: \n\n(Masalan: +998 90 123 45 67)",
+    'city': "Qaysi shahardansiz? \n\n(Masalan: Toshkent, Samarqand, Namangan, Andijon va hokazo.)",
     'photo': "Iltimos Avtomobilning bir dona suratini yuboring:",
-    'year': "Avtomobil ishlab chiqarilgan yilni kiriting, Masalan: 2015, 2016, 2017 va hokazo.",
-    'distance': "Avtomobil umumiy yurib otgan masofasini kiriting: Masalan: 10000 km, 20000 km, 30000 km va hokazo.",
-    'cost': "Avtomobilga taklif qiladigan narxni kiriting: Masalan: $10,000, $20,000 yoki 80 000 000 so'm va hokazo.",
-    'other': "Avtomobil haqida qisqacha yozing: Masalan: Yangi, qirilmagan, motor joyida va hokazo.",
+    'year': "Avtomobil ishlab chiqarilgan yilni kiriting:\n\n ( Misol uchun: 2015, 2016, 2017 …… )",
+    'distance': "Avtomobil umumiy yurib otgan masofasini kiriting: \n\n(Masalan: 10000 km, 20000 km, 30000 km va hokazo.)",
+    'cost': "Avtomobilga taklif qiladigan narxni kiriting: \n\n(Masalan: $10,000, $20,000 yoki 80 000 000 so'm va hokazo).",
+    'other': "Avtomobil haqida qisqacha yozing: \n\n(Masalan: Yangi, qirilmagan, motor joyida va hokazo).",
 }
 
 

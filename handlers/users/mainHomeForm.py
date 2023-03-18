@@ -23,16 +23,16 @@ TEXT = {
     'start': ("Assalomu alaykum, Kop qavatli uylar boyicha reklama bolimiga xush kelibsiz!!!\n"
         "Iltimos arizangiz qabul qilinishi uchun barcha talablarni togri bajaring...\n"
         "Formani bekor qilish uchun /cancel buyrug'ini bering...\n\n\n"
-        "Binodagi jami qavatlar sonini kiriting: Masalan: 8"),
-    'floor': "Qaysi qavatda turasiz? (masalan: 3 yoki 6):",
-    'rooms': "Uydagi xonalar sonini kiriting: (masalan: 3 ta):",
-    'things': "Uyning jihozlari bormi? Masalan: Bor, yo'q yoki Televizor, shkaf, muzlatgich",
-    'cost': 'Uyga qanday narx taklif qilasiz? Masalan $30,000, $40,000',
-    'conven': 'Uyning qulayliklari qanday? Masalan: Gaz, chiroq, suv, hakazo, internet',
-    'phone': 'Boglanish uchun bitta telefon raqam qoldiring: Masalan: +998 90 123 45 67',
-    'city': 'Qaysi shaharda yashaysiz? Masalan: Toshkent, Samarqand, Namangan',
+        "Binodagi jami qavatlar sonini kiriting: (Masalan: 8 qavat)"),
+    'floor': "Qaysi qavatda turasiz? \n\n(masalan: 3-qavat yoki 6-qavat):",
+    'rooms': "Uydagi xonalar sonini kiriting: \n\n(masalan: 3 ta):",
+    'things': "Uyning jihozlari bormi? \n\n(Masalan: Bor, yo'q yoki Televizor, shkaf, muzlatgich)",
+    'cost': 'Uyga qanday narx taklif qilasiz? \n\n(Masalan $30,000, $40,000)',
+    'conven': 'Uyning qulayliklari qanday? \n\n(Masalan: Gaz, chiroq, suv, hakazo, internet)',
+    'phone': 'Boglanish uchun bitta telefon raqam qoldiring: \n\n(Masalan: +998 90 123 45 67)',
+    'city': 'Qaysi shaharda yashaysiz? \n\n(Masalan: Toshkent, Samarqand, Namangan)',
     'photo': "Iltimos uyning bir dona suratini yuboring",
-    'holat': "Uyning holati qanday? Masalan: Yangi, eskirmagan, yorilmagan...",
+    'holat': "Uyning holati qanday? \n\n(Masalan: Yangi, eskirmagan, yorilmagan...)",
 }
 
 
