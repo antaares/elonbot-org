@@ -8,7 +8,8 @@ class MainAuto(StatesGroup):
     carColor = State()
     carState = State()
     distance = State()
-    transBox = State()
+    fuelType = State()
+    other_deatils = State()
     carCost = State()
     phoneNumber = State()
     carCity = State()
@@ -46,8 +47,9 @@ class MainHome(StatesGroup): #kop qavatli uylar uchun
     totalFloor = State() # Binodagi jami qavatlar
     currentFloor = State() # sizning qavatingiz
     countRooms = State()
-    homeThings = State()
+    household = State()
     homeState = State()
+    homeconven = State()
     homeCost = State()
     homePhoneNumber = State()
     address = State()

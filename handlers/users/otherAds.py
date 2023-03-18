@@ -7,7 +7,7 @@ from loader import dp
 MARKUP = types.InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton("Admin", url="https://t.me/daho_dasturchi")
+            InlineKeyboardButton("Admin", url="https://t.me/borboruz_admin")
         ]
     ]
 )

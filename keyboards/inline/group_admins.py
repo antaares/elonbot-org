@@ -15,13 +15,15 @@ async def info_admins(name: str, admin_id: int, hint: bool) -> InlineKeyboardMar
     ]
     )
 
-
+from loader import dp, bot
 
 async def comment_client(user_id):
+    username_ = await bot.get_me()
+    username = username_.username
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text="Izoh qoldirish", url="https://t.me/elonlartaxtasibot?start=comment_{}".format(user_id))
+                InlineKeyboardButton(text="Izoh qoldirish", url=f"https://t.me/{username}?start=comment_{user_id}")
             ]
         ]
     )

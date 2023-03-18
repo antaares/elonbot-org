@@ -71,12 +71,12 @@ class Database:
             user_id int,
             model varchar(255),
             year varchar(255),
-            position varchar(255),
-            car_state varchar(1000),
-            cost varchar(255),
-            transbox varchar(255),
             distance varchar(255),
+            car_state varchar(1000),
             color varchar(255),
+            fuel_type varchar(255),
+            other_details varchar(1000),
+            cost varchar(255),           
             number varchar(255),
             address varchar(255),
             photo varchar(255)
@@ -96,9 +96,9 @@ class Database:
             user_id int,
             area varchar(255),
             rooms varchar(255),
-            house_state varchar(255),
+            conven varchar(555),
+            house_state varchar(555),
             cost varchar(255),
-            conven varchar(255),
             number varchar(255),
             address varchar(255),
             photo varchar(255)
@@ -116,9 +116,10 @@ class Database:
             total_floors varchar(255),
             current_floor varchar(255),
             rooms varchar(255),
+            household varchar(255),
             home_state varchar(255),
-            cost varchar(255),
             conven varchar(255),
+            cost varchar(255),
             number varchar(255),
             address varchar(255),
             photo varchar(255)
@@ -202,43 +203,9 @@ class Database:
         """
         self.execute(sql, parameters=(id,), commit=True)
 
-    # add smartphone advertisements to the database
-    def add_smartphone(
-        self,
-        user_id: int,
-        model: str,
-        memory: str,
-        phone_state: str,
-        cost: str,
-        box: str,
-        docs: str,
-        number: str,
-        address: str,
-        photo: str,
-        ):
-        unique_id = self.unique_value()
-        sql = """
-        INSERT or IGNORE INTO Smartphone(id, user_id, model, memory, phone_state, cost, box, docs, number, address, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """
-        self.execute(
-            sql,
-            parameters=(
-                unique_id,
-                user_id,
-                model,
-                memory,
-                phone_state,
-                cost,
-                box,
-                docs,
-                number,
-                address,
-                photo,
-            ),
-            commit=True,
-        )
-        self.add_status(id=unique_id, status='active')
-        return unique_id
+    
+
+
 
 
     # add auto advertisements to the database
@@ -247,19 +214,19 @@ class Database:
         user_id: int,
         model: str,
         year: str,
-        position: str,
-        car_state: str,
-        cost: str,
-        transbox: str,
         distance: str,
+        car_state: str,
         color: str,
+        fuel_type: str,
+        other_details: str,
+        cost: str,
         number: str,
         address: str,
         photo: str,
         ):
         unique_id = self.unique_value()
         sql = """
-        INSERT or IGNORE INTO Auto(id, user_id, model, year, position, car_state, cost, transbox, distance, color, number, address, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT or IGNORE INTO Auto(id, user_id, model, year, distance, car_state, color, fuel_type, other_details, cost, number, address, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         self.execute(
             sql,
@@ -268,12 +235,12 @@ class Database:
                 user_id,
                 model,
                 year,
-                position,
-                car_state,
-                cost,
-                transbox,
                 distance,
+                car_state,
                 color,
+                fuel_type,
+                other_details,
+                cost,
                 number,
                 address,
                 photo
@@ -286,22 +253,24 @@ class Database:
 
 
 
+
+
     # add House advertisements to the database
     def add_house(
         self,
         user_id: int,
         area: str,
         rooms: str,
+        conven: str,
         house_state: str,
         cost: str,
-        conven: str,
         number: str,
         address: str,
         photo: str,
         ):
         unique_id = self.unique_value()
         sql = """
-        INSERT or IGNORE INTO House(id, user_id, area, rooms, house_state, cost, conven, number, address, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT or IGNORE INTO House(id, user_id, area, rooms,  conven, house_state, cost, number, address, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         self.execute(
             sql=sql,
@@ -310,9 +279,9 @@ class Database:
                 user_id,
                 area,
                 rooms,
+                conven,
                 house_state,
                 cost,
-                conven,
                 number,
                 address,
                 photo
@@ -324,6 +293,8 @@ class Database:
     
 
 
+
+
     # add the Home advertisements to the database
     def add_home(
         self,
@@ -331,16 +302,17 @@ class Database:
         total_floors: str,
         current_floor: str,
         rooms: str,
+        household: str,
         home_state: str,
-        cost: str,
         conven: str,
+        cost: str,
         number: str,
         address: str,
         photo: str,
         ):
         unique_id = self.unique_value()
         sql = """
-        INSERT or IGNORE INTO Home(id, user_id, total_floors, current_floor, rooms, home_state, cost, conven, number, address, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT or IGNORE INTO Home(id, user_id, total_floors, current_floor, rooms, household, home_state, conven, cost, number, address, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         self.execute(
             sql=sql,
@@ -350,9 +322,10 @@ class Database:
                 total_floors,
                 current_floor,
                 rooms,
+                household,
                 home_state,
-                cost,
                 conven,
+                cost,
                 number,
                 address,
                 photo,
@@ -440,11 +413,7 @@ class Database:
         result3 = self.execute(sql, parameters=(user_id, ads_id), fetchone=True)
         if result3:
             return result3, 3
-        # sql = """
-        # SELECT * FROM Smartphone WHERE user_id = ? AND id = ?"""
-        # result4 = self.execute(sql, parameters=(user_id, ads_id), fetchone=True)
-        # if result4:
-        #     return result4, 4
+       
         sql = """
         SELECT * FROM Service WHERE user_id = ? AND id = ?"""
         result4 = self.execute(sql, parameters=(user_id, ads_id), fetchone=True)

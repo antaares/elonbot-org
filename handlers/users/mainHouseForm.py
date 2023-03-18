@@ -21,12 +21,12 @@ TEXT = {
     'start': ("Assalomu alaykum, Hovlili uylar bo‘yicha reklama bo‘limiga xush kelibsiz!!!\n"
         "Iltimos arizangiz qabul qilinishi uchun barcha talablarni to‘g‘ri bajaring...\n\n"
         "Formani bekor qilish uchun /cancel buyrug'ini bering...\n\n\n"
-        "Uyning umumiy maydonini kiriting:"),
-    'rooms': "Yashash xonalari soni qancha?",
+        "Uyning umumiy maydonini kiriting, masalan: 100 kv.m."),
+    'rooms': "Yashash xonalari soni qancha? (masalan: 3 ta):",
     'qulay': "Qulayliklar haqida yozing(gaz, chiroq, suv va hakazo...):",
-    'holat': "Uyning holati haqida qisqacha yozing:",
-    'cost': "Uyga taklif qiladigan narxingizni yozing:",
-    'phone': "Bog‘lanish uchun telefon raqam kiriting:",
+    'holat': "Uyning holati haqida qisqacha yozing: Masalan: Yangi, eskirmagan, yorilmagan...",
+    'cost': "Uyga taklif qiladigan narxingizni yozing: Masalan: $20,000, $30,000...",
+    'phone': "Bog‘lanish uchun telefon raqam kiriting: Masalan: +998 90 123 45 67",
     'city': "Uyning manzilini kiriting(masalan: Toshkent, Samarqand, Urgut) :",
     'photo': "Uyingizning bir dona suratini yuboring:"
     }
@@ -35,9 +35,18 @@ TEXT = {
 
 
 
+
+
+
+
+
+
+
+
+
 from states.menuStates import MainHouse
 
-@dp.message_handler(IsPrivate(),Text(equals="🏡Hovlili uylar"), state="*")
+@dp.message_handler(IsPrivate(),Text(equals="🏡Hovli uylar"), state="*")
 async def startHouseForm(message: types.Message, state: FSMContext):
     text = TEXT['start'] 
     await message.answer(text=text, reply_markup=CANCEL)
@@ -119,6 +128,10 @@ async def getHomeCost(message: types.Message, state: FSMContext):
     except:
         pass
 
+
+
+
+
 @dp.message_handler(state=MainHouse.address)
 async def getHouseCost(message: types.Message, state: FSMContext):
     data = "#" + message.text.replace(" "," #")
@@ -130,6 +143,9 @@ async def getHouseCost(message: types.Message, state: FSMContext):
         await message.delete()
     except:
         pass
+
+
+
 
 @dp.message_handler(content_types='photo', state=MainHouse.getHousePhoto)
 async def getPhoto(message: types.Message, state: FSMContext):
@@ -163,7 +179,10 @@ async def userConfirm(message: types.Message, state: FSMContext):
         await state.finish()
     await bot.send_message(chat_id=message.chat.id, text="Kerakli bo'limni tanlang!", reply_markup=MAIN_MENU)
 
-async def returnDatas(state: FSMContext):
+
+
+
+async def returnDatas(state: FSMContext, unique_id: int):
     data = await state.get_data()
     area = data['area']
     rooms = data['rooms']
@@ -172,14 +191,15 @@ async def returnDatas(state: FSMContext):
     cost = data['cost']
     number = data['number']
     address = data['address']
-    text = f"🏘 Uyning umumiy maydoni: {area}\n"\
-        f"🏗 Yashash xonalar soni: {rooms}\n"\
-        f"🏖 Uydagi qulayliklar: {conven}\n"\
-        f"🏠 Uyning holati: {homestate}\n"\
-        f"🏦 Uyga taklif qilingan narx: {cost}\n"\
-        f"☎️ Telefon raqam: {number}\n"\
-        f"📍 Uyning manzili: {address}\n\n"\
-        f"E'lonlaringizni @elonlartaxtasibot orqali yuboring!"
+    text = f"<b>Ⓜ️ #Hovli #Uy    #id{unique_id}</b>\n\n"\
+        f"<b>📐 Umumiy maydoni:</b> {area}\n"\
+        f"<b>✅ Xonalar soni:</b> {rooms}\n"\
+        f"<b>✅ Uyning qulayliklari:</b> {conven}\n"\
+        f"<b>✅ Uyning holati:</b> {homestate}\n"\
+        f"<b>💰 Narxi:</b> {cost}\n"\
+        f"<b>☎️ Telefon:</b> {number}\n"\
+        f"<b>🚩 Manzil:</b> {address}\n\n"\
+        f"<a href=\"https://t.me/BorBor_Bot\">Bor Bor| Bepul e’lon joylang!</a>"
     return text
 
 
@@ -199,7 +219,9 @@ async def confirmation(message: types.Message, state: FSMContext):
     await message.answer("Siz yuborgan ma'lumotlar to‘g‘ri ekanligiga ishonchingiz komilmi?")
     data = await state.get_data()
     photo = data['photo']
-    text = await returnDatas(state)
+    id = await save_to_db(state, message.chat.id)
+    await state.update_data(unique_id=id)
+    text = await returnDatas(state, id)
     ##
     await asyncio.sleep(0.5)
     msg = await message.answer_photo(

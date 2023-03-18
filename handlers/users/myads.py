@@ -113,6 +113,7 @@ async def all_query_handler(query: types.CallbackQuery, state: FSMContext):
     if data[0] == 'mydelete':
         db.delete_ad(user_id=query.from_user.id,ads_id=int(data[1]))
         await query.answer("E'lon o'chirildi!", show_alert=True)
+        await query.message.delete()
         # wwwwwwwwww
         await bot.send_message(
             chat_id=ADMIN_GROUP, 
@@ -183,26 +184,27 @@ async def all_query_handler(query: types.CallbackQuery, state: FSMContext):
 
 async def return_auto_text(ad: tuple, unique_id: int):
     model = ad[2]
-    position = ad[4]
     year = ad[3]
-    color = ad[9]
+    distance = ad[4]
     carstate = ad[5]
-    distance = ad[8]
-    box = ad[7]
-    cost = ad[6]
+    color = ad[6]
+    fueltype = ad[7]
+    other = ad[8]
+    cost = ad[9]
     number = ad[10]
     address = ad[11]
-    text = f"#{address} #avto #{model.split()[0]}\t  #id{unique_id}\n"
-    text += f"🚔 Avtomobil: {model}\n"
-    text += f"➖ Yili: {year}\n"
-    text += f"🏎 Pozitsiyasi: {position}\n"
-    text += f"➖ Yurgan masofasi: {distance}\n"
-    text += f"➖ Rangi: {color}\n"
-    text += f"➖ Uzatmalar qutisi: {box}\n"
-    text += f"➖ Avtomobil holati: {carstate}\n"
-    text += f"➖ Narx: {cost}\n"
-    text += f"☎️ Telefon: {number}\n"
-    text += f"📍 Manzil: {address}"
+    text = f"<b>Ⓜ️#Avto #{model.split()[0]}\t  #id{unique_id}</b>\n\n"
+    text += f"<b>🚘 Avtomobil:</b> {model}\n"
+    text += f"<b>📆 Yili:</b> {year}\n"
+    text += f"<b>👣 Yurgan masofasi:</b> {distance}\n"
+    text += f"<b>🛠 Avtomobil holati:</b> {carstate}\n"
+    text += f"<b>⚪️ Rangi:</b> {color}\n"
+    text += f"<b>⛽️ Yoqilgʻi:</b> {fueltype}\n"
+    text += f"<b>🔗 Qoʻshimcha optsiyalari:</b> {other}\n"
+    text += f"<b>💰 Narx:</b> {cost}\n"
+    text += f"<b>☎️ Telefon: </b>{number}\n"
+    text += f"<b>📍 Manzil:</b> {address}\n\n"
+    text += f"<a href=\"https://t.me/BorBorGroup\">Bor Bor | Bepul e’lon joylang!</a>"
     return text
 
 
@@ -211,20 +213,23 @@ async def return_home_text(ad: tuple, unique_id: int):
     floors = ad[2]
     current = ad[3]
     rooms = ad[4]
-    things = ad[7]
-    homestate = ad[5]
-    cost = ad[6]
-    number = ad[8]
-    address = ad[9]
-    text = f"🏬 #{address} #uy\t#id{unique_id}\n"\
-    f"🏗 Jami qavatlar: {floors}\n"\
-    f"🚡 Nechanchi qavat: {current}\n"\
-    f"⛩ Xonalar soni: {rooms}\n"\
-    f"🎡 Uydagi jihozlar: {things}\n"\
-    f"🏛 Uyning holati: {homestate}\n"\
-    f"🏦 Taklif qilingan narx: {cost}\n"\
-    f"☎️ Boglanish uchun raqam: {number}\n"\
-    f"📍 Uyning manzili: {address}\n"
+    housuhold = ad[5]
+    homestate = ad[6]
+    conven = ad[7]
+    cost = ad[8]
+    number = ad[9]
+    address = ad[10]
+    text = f"<b>🏬 #Kvartira #id{unique_id}</b>\n"\
+    f"<b>✅ Umumiy qavatlar:</b> {floors}\n"\
+    f"<b>✅ Uyning joylashuv qavati:</b> {current}\n"\
+    f"<b>✅ Umumiy xonalar:</b> {rooms}\n"\
+    f"<b>✅ Uyning jihozlari:</b> {housuhold}\n"\
+    f"<b>✅ Uyning holati: </b> {homestate}\n"\
+    f"<b>🔗 Qoʻshimcha ma’lumotlar:</b> {conven}\n"\
+    f"<b>💰 Uyning narxi:</b> {cost}\n"\
+    f"<b>☎️ Telefon: </b>{number}\n"\
+    f"<b>🚩 Manzil:</b> {address}\n\n"\
+    f"<a href=\"https://t.me/BorBorGroup\">Bor Bor | Bepul e’lon joylang!</a>"
     return text
 
 
@@ -235,19 +240,20 @@ async def return_home_text(ad: tuple, unique_id: int):
 async def return_house_text(ad: tuple, unique_id: int):
     area = ad[2]
     rooms = ad[3]
-    conven = ad[6]
-    homestate = ad[4]
-    cost = ad[5]
+    conven = ad[4]
+    homestate = ad[5]
+    cost = ad[6]
     number = ad[7]
     address = ad[8]
-    text = f"#{address} #uy\t#id{unique_id}\n"\
-        f"🏘 Uyning umumiy maydoni: {area}\n"\
-        f"🏗 Yashash xonalar soni: {rooms}\n"\
-        f"🏖 Uydagi qulayliklar: {conven}\n"\
-        f"🏠 Uyning holati: {homestate}\n"\
-        f"🏦 Uyga taklif qilingan narx: {cost}\n"\
-        f"☎️ Telefon raqam: {number}\n"\
-        f"📍 Uyning manzili: {address}"
+    text = f"<b>Ⓜ️ #Hovli #Uy    #id{unique_id}</b>\n\n"\
+        f"<b>📐 Umumiy maydoni:</b> {area}\n"\
+        f"<b>✅ Xonalar soni:</b> {rooms}\n"\
+        f"<b>✅ Uyning qulayliklari:</b> {conven}\n"\
+        f"<b>✅ Uyning holati:</b> {homestate}\n"\
+        f"<b>💰 Narxi:</b> {cost}\n"\
+        f"<b>☎️ Telefon:</b> {number}\n"\
+        f"<b>🚩 Manzil:</b> {address}\n\n"\
+        f"<a href=\"https://t.me/BorBorGroup\">Bor Bor| Bepul e’lon joylang!</a>"
     return text
 
 
@@ -256,10 +262,10 @@ async def return_service_text(ad: tuple, unique_id: int):
     service_description = ad[3]
     regions = ad[4]
     number = ad[5]
-    text = f"#Xizmatlar\t#id{unique_id}\n"\
-        f"🛠 Xizmat turi: {service_type}\n"\
-        f"📝 Xizmat haqida: {service_description}\n"\
-        f"📍 Xizmat faoliyati hududlari: {regions}\n"\
-        f"☎️Xizmatlarga bog'lanish uchun raqam: {number}\n\n"\
-        f"E'lonlaringizni @elonlartaxtasibot orqali yuboring!"
+    text = f"<b>#Xizmatlar    #id{unique_id}</b>\n"\
+        f"<b>🛠 Xizmat turi:</b> {service_type}\n"\
+        f"<b>📝 Xizmat haqida:</b> {service_description}\n"\
+        f"<b>📍 Xizmat faoliyati hududlari:</b> {regions}\n"\
+        f"<b>☎️Xizmatlarga bog'lanish uchun raqam:</b> {number}\n\n"\
+        f"<a href=\"https://t.me/BorBorGroup\">Bor Bor| Bepul e’lon joylang!</a>"
     return text

@@ -8,7 +8,6 @@ async def on_startup(dispatcher):
     try:
         db.create_table_users()
         db.create_auto_ads()
-        db.create_smartphone_ads()
         db.create_home_ads()
         db.create_house_ads()
         db.create_status_table()

@@ -5,7 +5,7 @@ from . import IsNotMember
 from . import cancelHandler
 from . import mainHomeForm
 from . import mainHouseForm
-from . import mobilForm
+
 from . import ServiceForm
 from . import avtoForm
 from . import otherAds

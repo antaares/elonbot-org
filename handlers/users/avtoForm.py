@@ -24,17 +24,18 @@ TEXT = {
     'start': ("Assalomu alaykum, Avtomobillar bo‘yicha reklama bo‘limiga xush kelibsiz!!!\n"
         "Iltimos arizangiz qabul qilinishi uchun barcha talablarni to‘g‘ri bajaring...\n"
         "Formani bekor qilish uchun /cancel buyrug'ini bering...\n\n\n"
-        "Avtomobile modelini kiriting:"),
-    'position': "Avtomobil pozitsiyasini belgilang",
-    'color': "Avtomobil rangini yozing:",
-    'now': "Avtomobilning hozirgi holati haqida qisqacha yozing:",
+        "Avtomobile modelini kiriting: Masalan: Toyota Corolla, Malibu, Camry, Captiva va hakazo."),
+    'fuel_type': "Avtomobilning yoqlg'isi qanday? Misol uchun: Benzin, dizel, gaz va hokazo.",
+    'color': "Avtomobil rangini yozing: Masalan: Qora, oq, qizil, ko'k, sariq va hokazo.",
+    'now': "Avtomobilning hozirgi holati haqida qisqacha yozing: Masalan: Yangi, qirilmagan, motor joyida va hokazo.",
     'box': "Avtomobilning uzatish qutisi qanday?\nTanlang:",
-    'phone': "Telefon raqam kiriting:",
-    'city': "Qaysi shahardansiz?",
+    'phone': "Telefon raqam kiriting: Masalan: +998 90 123 45 67",
+    'city': "Qaysi shahardansiz? Masalan: Toshkent, Samarqand, Namangan, Andijon va hokazo.",
     'photo': "Iltimos Avtomobilning bir dona suratini yuboring:",
-    'year': "Avtomobil ishlab chiqarilgan yilni kiriting",
-    'distance': "Avtomobil umumiy yurib otgan masofasini kiriting:",
-    'cost': "Avtomobilga taklif qiladigan narxni kiriting:"
+    'year': "Avtomobil ishlab chiqarilgan yilni kiriting, Masalan: 2015, 2016, 2017 va hokazo.",
+    'distance': "Avtomobil umumiy yurib otgan masofasini kiriting: Masalan: 10000 km, 20000 km, 30000 km va hokazo.",
+    'cost': "Avtomobilga taklif qiladigan narxni kiriting: Masalan: $10,000, $20,000 yoki 80 000 000 so'm va hokazo.",
+    'other': "Avtomobil haqida qisqacha yozing: Masalan: Yangi, qirilmagan, motor joyida va hokazo.",
 }
 
 
@@ -64,10 +65,10 @@ async def startAutoForm(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=MainAuto.model)
 async def getAutoModel(message: types.Message, state: FSMContext):
-    await message.answer(TEXT['position'], reply_markup=AUTO_POSITION)
+    await message.answer(TEXT['year'])
     model = message.text
     await state.update_data(model=model)
-    await MainAuto.position.set()
+    await MainAuto.manuYear.set()
     try:
         await bot.delete_message(message.chat.id, message.message_id-1)
         await message.delete()
@@ -79,31 +80,6 @@ async def getAutoModel(message: types.Message, state: FSMContext):
 async def getManuYear(message: types.Message, state: FSMContext):
     data = message.text
     await state.update_data(manuyear=data)
-    await message.answer(TEXT['color'])
-    await MainAuto.carColor.set()
-    try:
-        await bot.delete_message(message.chat.id, message.message_id-1)
-        await message.delete()
-    except:
-        pass
-
-@dp.message_handler(state=MainAuto.carColor)
-async def getCarColor(message: types.Message, state: FSMContext):
-    data = message.text
-    await state.update_data(color=data)
-    await message.answer(TEXT['now'])
-    await MainAuto.carState.set()
-    try:
-        await bot.delete_message(message.chat.id, message.message_id-1)
-        await message.delete()
-    except:
-        pass
-
-
-@dp.message_handler(state=MainAuto.carState)
-async def getCarState(message: types.Message, state: FSMContext):
-    data = message.text
-    await state.update_data(carstate=data)
     await message.answer(TEXT['distance'])
     await MainAuto.distance.set()
     try:
@@ -114,21 +90,80 @@ async def getCarState(message: types.Message, state: FSMContext):
 
 
 
-
-
-
-
 @dp.message_handler(state=MainAuto.distance)
 async def getDistance(message: types.Message, state: FSMContext):
     distance = message.text
     await state.update_data(distance=distance)
-    await message.answer(TEXT['box'], reply_markup=TRANSMISSION_BOX)
-    await MainAuto.transBox.set()
+    await message.answer(TEXT['now'])
+    await MainAuto.carState.set()
     try:
         await bot.delete_message(message.chat.id, message.message_id-1)
         await message.delete()
     except:
         pass
+
+
+
+@dp.message_handler(state=MainAuto.carState)
+async def getCarState(message: types.Message, state: FSMContext):
+    data = message.text
+    await state.update_data(carstate=data)
+    await message.answer(TEXT['color'])
+    await MainAuto.carColor.set()
+    try:
+        await bot.delete_message(message.chat.id, message.message_id-1)
+        await message.delete()
+    except:
+        pass
+
+
+
+
+
+@dp.message_handler(state=MainAuto.carColor)
+async def getCarColor(message: types.Message, state: FSMContext):
+    data = message.text
+    await state.update_data(color=data)
+    await message.answer(TEXT['fuel_type'])
+    await MainAuto.fuelType.set()
+    try:
+        await bot.delete_message(message.chat.id, message.message_id-1)
+        await message.delete()
+    except:
+        pass
+
+
+
+@dp.message_handler(state=MainAuto.fuelType)
+async def getFuelType(message: types.Message, state: FSMContext):
+    data = message.text
+    await state.update_data(fueltype=data)
+    await message.answer(TEXT['other'])
+    await MainAuto.other_deatils.set()
+    try:
+        await bot.delete_message(message.chat.id, message.message_id-1)
+        await message.delete()
+    except:
+        pass
+
+
+
+
+@dp.message_handler(state=MainAuto.other_deatils)
+async def getOtherDetails(message: types.Message, state: FSMContext):
+    data = message.text
+    await state.update_data(other=data)
+    await message.answer(TEXT['cost'])
+    await MainAuto.carCost.set()
+    try:
+        await bot.delete_message(message.chat.id, message.message_id-1)
+        await message.delete()
+    except:
+        pass
+
+
+
+
 
 
 
@@ -155,6 +190,10 @@ async def getPhoneNumber(message: types.Message, state: FSMContext):
         await message.delete()
     except:
         pass
+
+
+
+
 @dp.message_handler(state=MainAuto.address)
 async def getAddress(message: types.Message, state: FSMContext):
     address = message.text
@@ -166,6 +205,9 @@ async def getAddress(message: types.Message, state: FSMContext):
         await message.delete()
     except:
         pass
+
+
+
 
 @dp.message_handler(content_types=types.ContentType.PHOTO, state=MainAuto.carPhoto)
 async def getCarPhoto(message: types.Message, state: FSMContext):
@@ -211,63 +253,30 @@ async def userConfirm(message: types.Message, state: FSMContext):
 
 
 
-
-@dp.callback_query_handler(state=MainAuto.position)
-async def callAutoModel(query: types.CallbackQuery, state: FSMContext):
-    position = query.data[-1]
-    await query.answer(cache_time=0)
-    await state.update_data(position=position)
-    await bot.send_message(query.message.chat.id, TEXT['year'])
-    await MainAuto.manuYear.set()
-    try:
-        await bot.delete_message(query.message.chat.id, query.message.message_id)
-    except:
-        pass
-
-
-
-
-
-@dp.callback_query_handler(state=MainAuto.transBox)
-async def getTransBox(query: types.CallbackQuery, state: FSMContext):
-    data = query.data
-    await state.update_data(transbox=data)
-    await query.answer(cache_time=0)
-    await bot.send_message(query.message.chat.id, TEXT['cost'])
-    await MainAuto.carCost.set()
-    try:
-        await bot.delete_message(query.message.chat.id, query.message.message_id)
-    except:
-        pass
-
-
-
-
-
 async def returnDatas(state: FSMContext, unique_id: int):
     data = await state.get_data()
     model = data['model']
-    position = data['position']
     year = data['manuyear']
-    color = data['color']
-    carstate = data['carstate']
     distance = data['distance']
-    box = data['transbox']
+    carstate = data['carstate']
+    color = data['color']
+    fueltype = data['fueltype']
+    other = data['other']
     cost = data['carcost']
     number = data['number']
     address = data['address']
-    text = f"#{address} #avto #{model.split()[0]}\t  #id{unique_id}\n"
-    text += f"🚔 Avtomobil: {model}\n"
-    text += f"➖ Yili: {year}\n"
-    text += f"🏎 Pozitsiyasi: {position}\n"
-    text += f"➖ Yurgan masofasi: {distance}\n"
-    text += f"➖ Rangi: {color}\n"
-    text += f"➖ Uzatmalar qutisi: {box}\n"
-    text += f"➖ Avtomobil holati: {carstate}\n"
-    text += f"➖ Narx: {cost}\n"
-    text += f"☎️ Telefon: {number}\n"
-    text += f"📍 Manzil: {address}\n\n"
-    text += f"E'lonlaringizni @elonlartaxtasibot orqali yuboring!"
+    text = f"<b>Ⓜ️#Avto #{model.split()[0]}\t  #id{unique_id}</b>\n\n"
+    text += f"<b>🚘 Avtomobil:</b> {model}\n"
+    text += f"<b>📆 Yili:</b> {year}\n"
+    text += f"<b>👣 Yurgan masofasi:</b> {distance}\n"
+    text += f"<b>🛠 Avtomobil holati:</b> {carstate}\n"
+    text += f"<b>⚪️ Rangi:</b> {color}\n"
+    text += f"<b>⛽️ Yoqilgʻi:</b> {fueltype}\n"
+    text += f"<b>🔗 Qoʻshimcha optsiyalari:</b> {other}\n"
+    text += f"<b>💰 Narx:</b> {cost}\n"
+    text += f"<b>☎️ Telefon: </b>{number}\n"
+    text += f"<b>📍 Manzil:</b> {address}\n\n"
+    text += f"<a href=\"https://t.me/BorBor_Bot\">Bor Bor | Bepul e’lon joylang!</a>"
     return text
 
 
@@ -297,16 +306,16 @@ async def confirmation(message: types.Message, state: FSMContext):
 async def save_to_db(data: FSMContext, user_id: int):
     data = await data.get_data()
     return db.add_auto(
+        user_id=user_id,
         model=data['model'],
-        position=data['position'],
         year=data['manuyear'],
-        car_state=data['carstate'],
         distance=data['distance'],
+        car_state=data['carstate'],
         color=data['color'],
-        number=data['number'],
+        fuel_type=data['fueltype'],
+        other_details=data['other'],
         cost=data['carcost'],
-        transbox=data['transbox'],
+        number=data['number'],
         address=data['address'],
         photo=data['photo'],
-        user_id=user_id
     )

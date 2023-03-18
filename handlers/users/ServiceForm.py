@@ -25,10 +25,10 @@ TEXT = {
     'start': ("Assalomu alaykum, Xizmatlar bo‘yicha reklama bo‘limiga xush kelibsiz!!!\n"\
               "Iltimos arizangiz qabul qilinishi uchun barcha talablarni to‘g‘ri bajaring...\n"\
                 "Formani bekor qilish uchun /cancel buyrug'ini bering...\n\n\n"\
-                "Xizmatlaringizni turini yozing:"),
+                "Xizmatlaringizni turini yozing: Masalan: O'quv markazi, Kompyuter xizmatlari..."),
     'description': "Xizmatlaringiz haqida to'liqroq izoh yozing  {1000 ta belgi kiritishingiz mumkin!}:",
-    'regions': "Xizmatlaringizni qaysi hududlarda faoliyat ko'rsatadi:",
-    'number': "Bog'lanish uchun elefon raqamingizni kiriting:",
+    'regions': "Xizmatlaringizni qaysi hududlarda faoliyat ko'rsatadi: Masalan: Toshkent, Samarqand, Urgut...",
+    'number': "Bog'lanish uchun elefon raqamingizni kiriting: Masalan +998 90 123 45 67",
     'photo': "Iltimos xizmatlaringizni ifodalaydigan bir dona suratni yuklang...",
 }
 
@@ -177,13 +177,12 @@ async def returnDatas(state: FSMContext, unique_id: int):
     description = data['description']
     regions = data['regions']
     number = data['number']
-    photo = data['photo']
-    text = f"#Xizmatlar   #id{unique_id}\n\n"\
-            f"Xizmat turi: {service_type}\n"\
-            f"Xizmat haqida: {description}\n"\
-            f"Xizmat faoliyat hududlari: {regions}\n"\
-            f"Xizmatlarga bog'lanish uchun raqam: {number}\n\n"\
-            f"E'lonlaringizni @elonlartaxtasibot orqali yuboring!"
+    text = f"<b>#Xizmatlar    #id{unique_id}</b>\n"\
+        f"<b>🛠 Xizmat turi:</b> {service_type}\n"\
+        f"<b>📝 Xizmat haqida:</b> {description}\n"\
+        f"<b>📍 Xizmat faoliyati hududlari:</b> {regions}\n"\
+        f"<b>☎️Xizmatlarga bog'lanish uchun raqam:</b> {number}\n\n"\
+        f"<a href=\"https://t.me/BorBor_Bot\">Bor Bor| Bepul e’lon joylang!</a>"
     return text
             
 

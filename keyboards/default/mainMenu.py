@@ -8,7 +8,7 @@ MAIN_MENU = ReplyKeyboardMarkup(
             KeyboardButton(text="🛠Xizmatlar🪜")
         ],
         [
-            KeyboardButton(text="🏡Hovlili uylar"),
+            KeyboardButton(text="🏡Hovli uylar"),
             KeyboardButton(text="🏬 Kop qavatli uylar")
         ],
         [
