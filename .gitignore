@@ -110,6 +110,12 @@ ENV/
 env.bak/
 venv.bak/
 
+
+# pipenv
+
+Pipfile
+Pipfile.lock
+
 # Spyder project settings
 .spyderproject
 .spyproject

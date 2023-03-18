@@ -1,10 +1,26 @@
-BOT_TOKEN = "5515261110:AAG707cGLzo5dYBltaBnvCeXNL9nNA7iBXc"
-
-ADMINS = [1393139047, 1042548328]
-CHANNELS = [-1001229395119] #kanal id raqami
-CHANNEL_LINK = "https://t.me/BorBorRasmiy" # kanal linki
+from environs import Env
 
 
 
+env = Env()
+env.read_env()
 
-ADMIN_GROUP = -1001908820101 # admin guruhi
+
+
+BOT_TOKEN = env.str("BOT_TOKEN")  # bot tokeni
+
+ADMINS_ = env.list("ADMINS")  # admin id raqamlari
+ADMINS = [int(admin) for admin in ADMINS_]
+
+
+
+
+CHANNELS_ = env.list("CHANNELS")  # kanal id raqamlari
+CHANNELS = [int(channel) for channel in CHANNELS_]
+
+CHANNEL_LINK = env.str("CHANNEL_LINK") # kanal linki
+
+ADMIN_GROUP = env.int("ADMIN_GROUP") # admin guruhi
+
+
+
