@@ -25,7 +25,7 @@ async def bot_start(message: types.Message, state: FSMContext):
         await message.answer("Arizachiga yuborish uchun izoh yozing!")
         await Comment.GetComment.set()
         return await state.update_data(user_id=args.split('_')[1])
-    await message.answer(f"Salom, {message.from_user.full_name}!"\
+    await message.answer(f"Salom, {message.from_user.full_name}!\n"\
                          "Siz bizning bot yyordamida @BorBorRasmiy kanalimizga turli xildagi e'lonlar joylashtirishingiz mumkin.")
     await message.answer("Iltimos, botdan to‘liq foydalanish uchun kanalimizga a'zo bo‘ling", reply_markup=SUBSCRIBE)
     try:
