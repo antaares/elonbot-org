@@ -26,8 +26,10 @@ async def bot_start(message: types.Message, state: FSMContext):
         await Comment.GetComment.set()
         return await state.update_data(user_id=args.split('_')[1])
     await message.answer(f"Salom, {message.from_user.full_name}!\n"\
-                         "Siz bizning bot yyordamida @BorBorRasmiy kanalimizga turli xildagi e'lonlar joylashtirishingiz mumkin.")
-    await message.answer("Iltimos, botdan to‘liq foydalanish uchun kanalimizga a'zo bo‘ling", reply_markup=SUBSCRIBE)
+                         " <a href=\"https://t.me/borborrasmiy\">Bor Bor </a> kanlining rasmiy botiga xush kelibsiz! "\
+                         "Bu yerda siz e’lonlaringizni tartibli va samarali joylashingiz mumkin! Iltimos savollarga toʻliq, "\
+                         "aniq va qisqa qilib javob bering!", disable_web_page_preview=True)
+    await message.answer("Iltimos e'lon berishdan oldin bizning kanalimizga obuna bo'ling!", reply_markup=SUBSCRIBE)
     try:
         db.add_user(
             id=message.from_user.id,
