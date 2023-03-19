@@ -40,7 +40,7 @@ TEXT = {
 
 
 
-@dp.message_handler(IsPrivate(),Text(equals="🛠Xizmatlar🪜"))
+@dp.message_handler(IsPrivate(),Text(equals="🛠Xizmatlar"))
 async def startServiceForm(message: types.Message, state: FSMContext):
     text = TEXT['start']
     await message.answer(text=text, reply_markup= CANCEL)

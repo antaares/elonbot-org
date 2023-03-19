@@ -28,7 +28,7 @@ TEXT = {
     'rooms': "Uydagi xonalar sonini kiriting: \n\n(masalan: 3 ta):",
     'things': "Uyning jihozlari bormi? \n\n(Masalan: Bor, yo'q yoki Televizor, shkaf, muzlatgich)",
     'cost': 'Uyga qanday narx taklif qilasiz? \n\n(Masalan $30,000, $40,000)',
-    'conven': 'Uyning qulayliklari qanday? \n\n(Masalan: Gaz, chiroq, suv, hakazo, internet)',
+    'conven': 'Uyning qulayliklari qanday? \n\n(Masalan: Gaz, chiroq, suv, internet)',
     'phone': 'Boglanish uchun bitta telefon raqam qoldiring: \n\n(Masalan: +998 90 123 45 67)',
     'city': 'Qaysi shaharda yashaysiz? \n\n(Masalan: Toshkent, Samarqand, Namangan)',
     'photo': "Iltimos uyning bir dona suratini yuboring",

@@ -23,7 +23,7 @@ TEXT = {
         "Formani bekor qilish uchun /cancel buyrug'ini bering...\n\n\n"
         "Uyning umumiy maydonini kiriting, (masalan: 100 kv.m.)"),
     'rooms': "Yashash xonalari soni qancha? \n\n(masalan: 3 ta):",
-    'qulay': "Qulayliklar haqida yozing: \n\n(gaz, chiroq, suv va hakazo...):",
+    'qulay': "Qulayliklar haqida yozing: \n\n(gaz, chiroq, suv...):",
     'holat': "Uyning holati haqida qisqacha yozing: \n\n(Masalan: Yangi, eskirmagan, yorilmagan...)",
     'cost': "Uyga taklif qiladigan narxingizni yozing: \n\n(Masalan: $20,000, $30,000...)",
     'phone': "Bog‘lanish uchun telefon raqam kiriting: \n\n(Masalan: +998 90 123 45 67)",

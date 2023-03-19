@@ -4,8 +4,8 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 MAIN_MENU = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="🚔Avtomobil"),
-            KeyboardButton(text="🛠Xizmatlar🪜")
+            KeyboardButton(text="🚘Avtomobil"),
+            KeyboardButton(text="🛠Xizmatlar")
         ],
         [
             KeyboardButton(text="🏡Hovli uylar"),
