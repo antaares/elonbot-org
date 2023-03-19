@@ -50,7 +50,10 @@ async def bot_start(message: types.Message, state: FSMContext):
         return await state.update_data(user_id=args.split('_')[1])
 
     text = "Kerakli bo'limni tanlang!!!"
-    await message.answer(f"Salom, {message.from_user.full_name}!")
+    await message.answer(f"Salom, {message.from_user.full_name}!\n"\
+                         " <a href=\"https://t.me/borborrasmiy\">Bor Bor </a> kanlining rasmiy botiga xush kelibsiz! "\
+                         "Bu yerda siz e’lonlaringizni tartibli va samarali joylashingiz mumkin! Iltimos savollarga toʻliq, "\
+                         "aniq va qisqa qilib javob bering!", disable_web_page_preview=True)
     await message.answer(text=text, reply_markup=MAIN_MENU)
     try:
         db.add_user(
