@@ -75,3 +75,12 @@ async def get_comment(message: types.Message, state: FSMContext):
     await bot.send_message(chat_id=int(user_id), text=message.text)
     await message.answer("Izoh yuborildi!")
     await state.finish()
+
+
+
+
+
+
+@dp.message_handler(IsPrivate(), commands="error")
+async def error(message: types.Message):
+    await message.answer_document(document= open("logfile_err.log", "rb"))
