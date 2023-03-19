@@ -46,7 +46,7 @@ TEXT = {
 
 
 
-@dp.message_handler(IsPrivate(),Text(equals="🏬 Kop qavatli uylar"), state="*")
+@dp.message_handler(IsPrivate(),Text(equals="🏬 Ko'p qavatli uylar"), state="*")
 async def startHomeForm(message: types.Message, state: FSMContext):
     text = TEXT['start']
     await message.answer(text=text, reply_markup=CANCEL)
