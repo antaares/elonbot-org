@@ -2,7 +2,7 @@ import sqlite3
 from aiogram import executor
 
 from loader import dp, db
-import filters, handlers
+import filters, handlers, middlewares
 
 async def on_startup(dispatcher):
     try:
